@@ -62,7 +62,11 @@ window.onload = function () {
         $("#responses").text("");
         $(".score").remove();
         $("#restart").remove();
-        $("#images").remove();
+       
+        $("#correct").empty();
+        eval = false;
+        clearTimeout(timeoutImg);
+        $("#images").empty();
         console.log("start game");
         resetTimer();
         gameTimer();
@@ -91,11 +95,12 @@ window.onload = function () {
                 console.log(time);
                 $("#timer").text("Time Remaining: " + time + " seconds left!");
             }
-            else if (!finishBool) {
+            else if (!finishBool && eval==false) {
                 $("#timer").text("Time is Over");
                 stillTime = false;
-                unanswered++;
-                game();
+                imageUnans();
+                timeoutImg = setTimeout(game, 2000);
+                //game();
             }
         }
     }
@@ -132,8 +137,8 @@ window.onload = function () {
             response = $(this).attr("value");
             console.log(response);
             getEval();
-            //timeoutImg = setTimeout(game,3000);
-            game();
+            timeoutImg = setTimeout(game, 2000);
+            //game();
         });
         
     }
@@ -179,16 +184,39 @@ window.onload = function () {
 
     function imageWin() {
         //$("#alsoscore").text("");
-        $("#instructions").append("Correct Answer");
+        $("#timer").text("");
+        eval =true;
         $("#images").html("<img src=assets/images/0"+i+".jpg>");
+        $("#correct").html("<h2>Correct Answer</h2>");
         console.log("value i: " + i);
-
     }
+
+    function imageLost() {
+        //$("#alsoscore").text("");
+        $("#timer").text("");
+        eval =true;
+        $("#images").html("<img src=assets/images/0"+i+".jpg>");
+        $("#correct").html("<h2>Incorrect Answer</h2>");
+        console.log("value i: " + i);
+    }
+
+    function imageUnans() {
+        //$("#alsoscore").text("");
+        $("#timer").text("");
+        eval =true;
+        unanswered++;
+        $("#images").html("<img src=assets/images/0"+i+".jpg>");
+        $("#correct").html("<h2>No Answer</h2>");
+        console.log("value i: " + i);
+    }
+
+
     function getEval() {
         switch (i) {
             case 0:
                 if (response != 2) {
                     loses++;
+                    imageLost();
                     console.log("loses: " + loses);
                 }
                 else {
@@ -200,90 +228,108 @@ window.onload = function () {
             case 1:
                 if (response != 1) {
                     loses++;
+                    imageLost();
                     console.log("loses: " + loses);
                 }
                 else {
                     wins++;
+                    imageWin();
                     console.log("wins: " + wins);
                 }
                 break;
             case 2:
                 if (response != 1) {
                     loses++;
+                    imageLost();
                     console.log("loses: " + loses);
                 }
                 else {
                     wins++;
+                    imageWin();
                     console.log("wins: " + wins);
                 }
                 break;
             case 3:
                 if (response != 0) {
                     loses++;
+                    imageLost();
                     console.log("loses: " + loses);
                 }
                 else {
                     wins++;
+                    imageWin();
                     console.log("wins: " + wins);
                 }
                 break;
             case 4:
                 if (response != 0) {
                     loses++;
+                    imageLost();
                     console.log("loses: " + loses);
                 }
                 else {
                     wins++;
+                    imageWin();
                     console.log("wins: " + wins);
                 }
                 break;
             case 5:
                 if (response != 3) {
                     loses++;
+                    imageLost();
                     console.log("loses: " + loses);
                 }
                 else {
                     wins++;
+                    imageWin();
                     console.log("wins: " + wins);
                 }
                 break;
             case 6:
                 if (response != 2) {
                     loses++;
+                    imageLost();
                     console.log("loses: " + loses);
                 }
                 else {
                     wins++;
+                    imageWin();
                     console.log("wins: " + wins);
                 }
                 break;
             case 7:
                 if (response != 1) {
                     loses++;
+                    imageLost();
                     console.log("loses: " + loses);
                 }
                 else {
                     wins++;
+                    imageWin();
                     console.log("wins: " + wins);
                 }
                 break;
             case 8:
                 if (response != 0) {
                     loses++;
+                    imageLost();
                     console.log("loses: " + loses);
                 }
                 else {
                     wins++;
+                    imageWin();
                     console.log("wins: " + wins);
                 }
                 break;
             case 9:
                 if (response != 3) {
                     loses++;
+                    imageLost();
                     console.log("loses: " + loses);
                 }
                 else {
                     wins++;
+                    imageWin();
                     console.log("wins: " + wins);
                 }
                 break;
