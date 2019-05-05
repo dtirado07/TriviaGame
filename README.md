@@ -1,5 +1,7 @@
 # TriviaGame
 
+https://dtirado07.github.io/TriviaGame/
+
 It is a project to test skill of JQuery and JS. It also use timers for the game to work correctly.
 
 The game is a simple trivia game, with timer to answer the question. 
